@@ -1,0 +1,139 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ddd;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Navbar Styles */
+.navbar {
+    width: 100%;
+    background-color: whitesmoke;
+    height: 60px;
+    display: flex;
+    align-items: center; /* Vertically center the content */
+    justify-content: flex-start; /* Align items to the left */
+    padding: 0 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    top: 0;
+}
+
+    .navbar img {
+        height: 50px;
+        width: 50px;
+        margin-right: 10px; /* Optional, space between logo and text */
+    }
+
+    .navbar h1 {
+        font-size: 22px;
+        color: darkslateblue;
+        margin: 0;
+        font-weight: bold;
+    }
+
+/* Title Section */
+h3 {
+    color: #555;
+    margin-bottom: 10px;
+    font-size: 22px;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 5px;
+}
+
+/* Input Section */
+.content {
+    margin: 80px auto;
+    max-width: 100%;
+    width: 50%;
+    background: white;
+    padding: 20px 25px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+/* Content container, width remains 50% as per your original requirement */
+.content {
+    margin: 80px auto; /* Account for the fixed navbar */
+    width: 50%; /* Keep content width at 50% */
+    background: white;
+    padding: 20px 25px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
+/* Ensure the TextBox and Button are full width within the content div */
+dot\:TextBox, dot\:Button {
+    width: 100%; /* Make the controls full width within .content */
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 10px;
+    font-size: 16px;
+    box-sizing: border-box; /* Include padding and border in width calculation */
+}
+
+/* TextBox specific styling */
+dot\:TextBox {
+    border: 1px solid lightslategray;
+}
+
+/* Button specific styling */
+dot\:Button {
+    background-color: darkslateblue;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 15px;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+dot\:Button:hover {
+    background-color: slateblue;
+    transform: translateY(-2px);
+}
+
+
+/* Output Section */
+p {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+    p span {
+        font-weight: bold;
+        color: darkslateblue;
+    }
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .content {
+        padding: 15px;
+    }
+
+    h3 {
+        font-size: 20px;
+    }
+
+    label {
+        font-size: 16px;
+    }
+
+    dot\:TextBox, dot\:Button {
+        font-size: 14px;
+    }
+}

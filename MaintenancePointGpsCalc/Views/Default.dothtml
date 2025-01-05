@@ -1,0 +1,43 @@
+@viewModel MaintenancePointGpsCalc.ViewModels.DefaultViewModel, MaintenancePointGpsCalc
+@masterPage Views/MasterPage.dotmaster
+
+<dot:Content ContentPlaceHolderID="MainContent">
+    <div class="navbar">
+        <img src="/Resources/Images/globe.png" alt="Logo" />
+        <h1>Maintenance Point GPS Calculator</h1>
+    </div>
+
+    <div class="content">
+        <h3>Vstupní data</h3>
+        <label>Počáteční GPS (Šířka,Délka)* </label>
+        <dot:TextBox Text="{value: _root.StartGps}" placeholder="55.191926S,99.236949E" style="width: 100%; border-radius:7px;"/>
+        <br />
+        <label>Konečná GPS (Šířka,Délka)* </label>
+        <dot:TextBox Text="{value: _root.EndGps}" placeholder="55.5431089S, 158.4050531E" style="width: 100%; border-radius: 7px; border: 1px solid; "/>
+        <br />
+        <label>Délka trasy (v metrech)* </label>
+        <dot:TextBox Text="{value: _root.TrackLength}" placeholder="900" style="width: 100%; border-radius: 7px; border: 1px solid; "/>
+        <br />
+        <label>Délka záznamu (v sekundách)* </label>
+        <dot:TextBox Text="{value: _root.FlightTime}" placeholder="324" style="width: 100%; border-radius: 7px; border: 1px solid; "/>
+        <br />
+        <label>Čas zaznamenání problému (v sekundách)* </label>
+        <dot:TextBox Text="{value: _root.TargetTime}" placeholder="162" style="width: 100%; border-radius: 7px; border: 1px solid; "/>
+        <br /><br />
+        <dot:Button Text="Spočítat pozici problému" Click="{command: _root.CalculateCoordinates()}"
+                    style="
+                            background-color: lightgrey;
+                            color: darkslategrey;
+                            border: none;
+                            text-align: center;
+                            width: 100%;
+                            padding: 2px;
+                            font-family:Arial;
+                            border-radius: 10px;
+                            font-weight:bold;"
+                    />
+        <br /><br />
+        <h3>Výstup</h3>
+        <p>Pozice problému: <span>{{value: _root.TargetGps}}</span></p>
+    </div>
+</dot:Content>
