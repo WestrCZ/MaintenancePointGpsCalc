@@ -18,12 +18,13 @@
         <label>Délka trasy (v metrech)* </label>
         <dot:TextBox Text="{value: _root.TrackLength}" placeholder="900" style="width: 100%; border-radius: 7px; border: 1px solid; "/>
         <br />
-        <label>Délka záznamu (v sekundách)* </label>
-        <dot:TextBox Text="{value: _root.FlightTime}" placeholder="324" style="width: 100%; border-radius: 7px; border: 1px solid; "/>
+        <label>Rychlost letu (m/s) </label>
+        <dot:TextBox Text="{value: _root.Speed}" placeholder="324" style="width: 100%; border-radius: 7px; border: 1px solid; "/>
         <br />
         <label>Čas zaznamenání problému (v sekundách)* </label>
         <dot:TextBox Text="{value: _root.TargetTime}" placeholder="162" style="width: 100%; border-radius: 7px; border: 1px solid; "/>
-        <br /><br />
+        <label>Remízek je od dronu směrem na: </label>
+        <dot:ComboBox DataSource="{value: _root.PointAdjustmentWayOptions}" SelectedValue="{value: _root.PointAdjustmentWay}" style="width: 100%; border-radius: 7px; border: 1px solid;">  
         <dot:Button Text="Spočítat pozici problému" Click="{command: _root.CalculateCoordinates()}"
                     style="
                             background-color: lightgrey;
@@ -39,5 +40,6 @@
         <br /><br />
         <h3>Výstup</h3>
         <p>Pozice problému: <span>{{value: _root.TargetGps}}</span></p>
+        <p>Délka letu (rychlost=2 m/s): <span>{{value: _root.FlightTime}}</span></p>
     </div>
 </dot:Content>

@@ -13,13 +13,14 @@ public class DefaultViewModel : MasterPageViewModel
     public string EndGps { get; set; }   // Format: "lat,lon"
     [Required]
     public double TrackLength { get; set; }
-    [Required]
-    public double FlightTime { get; set; }
+    public double FlightTime => TrackLength / Speed;
+    public double Speed { get; set; } = 2;
     [Required]
     public double TargetTime { get; set; }
     // Output
     public string TargetGps { get; set; }
-
+    public string PointAdjustmentWay { get; set; }
+    public string[] PointAdjustmentWayOptions => ["Sever", "Jih"];
     public void CalculateCoordinates()
     {
         try
@@ -37,9 +38,34 @@ public class DefaultViewModel : MasterPageViewModel
             double progressRatio = TargetTime / FlightTime;
 
             // Calculate target GPS
-            // P = A + s*t formula
             double targetLat = startLat + (endLat - startLat) * progressRatio;
             double targetLon = startLon + (endLon - startLon) * progressRatio;
+
+            // Calculate vector direction from start to end
+            double vectorLat = endLat - startLat;
+            double vectorLon = endLon - startLon;
+
+            // Normalize the vector (to avoid scaling it with TrackLength)
+            double vectorLength = Math.Sqrt(vectorLat * vectorLat + vectorLon * vectorLon);
+            vectorLat /= vectorLength;
+            vectorLon /= vectorLength;
+
+            // Calculate the parallel (normal) vector
+            double normalLat = -vectorLon;
+            double normalLon = vectorLat;
+
+            double adjustmentDistance = 50 / 10000000; // 50 meters in degrees
+
+            if (PointAdjustmentWay == "Sever")
+            {
+                targetLat += normalLat * adjustmentDistance;
+                targetLon += normalLon * adjustmentDistance;
+            }
+            else if (PointAdjustmentWay == "Jih")
+            {
+                targetLat -= normalLat * adjustmentDistance;
+                targetLon -= normalLon* adjustmentDistance;
+            }
 
             // Format output with correct directions
             TargetGps = $"{FormatCoordinate(targetLat, "N", "S")},{FormatCoordinate(targetLon, "E", "W")}";
