@@ -19,8 +19,10 @@ public class DefaultViewModel : MasterPageViewModel
     public double TargetTime { get; set; }
     // Output
     public string TargetGps { get; set; }
+    [Required]
     public string PointAdjustmentWay { get; set; }
     public string[] PointAdjustmentWayOptions => ["Sever", "Jih"];
+    public double Distance { get; set; } = 50; //Distance from the scanned object in meters
     public void CalculateCoordinates()
     {
         try
@@ -54,7 +56,7 @@ public class DefaultViewModel : MasterPageViewModel
             double normalLat = -vectorLon;
             double normalLon = vectorLat;
 
-            double adjustmentDistance = 50 / 10000000; // 50 meters in degrees
+            double adjustmentDistance = Distance / 10000000; // Distance of meters in degrees
 
             if (PointAdjustmentWay == "Sever")
             {
